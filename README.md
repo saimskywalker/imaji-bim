@@ -12,6 +12,9 @@ three-state outcome, and the tests around them. **There is no IFC parser and
 there are no rules yet.** The open issues set out what is planned and in what
 order.
 
+For now this is a research project: no rules are being shipped, and the
+browser tool in the open issues is on hold.
+
 This is stated plainly rather than buried because a compliance tool that
 overstates what it does is worse than no tool.
 
