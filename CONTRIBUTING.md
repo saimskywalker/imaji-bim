@@ -18,8 +18,8 @@ Commit messages follow the short conventional style already in the log:
 
 ```bash
 cargo fmt --all -- --check
-cargo clippy --all-targets -- -D warnings
-cargo test
+cargo clippy --locked --all-targets -- -D warnings
+cargo test --locked
 cargo doc --no-deps
 ```
 
