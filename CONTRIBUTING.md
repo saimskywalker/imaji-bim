@@ -18,8 +18,8 @@ Commit messages follow the short conventional style already in the log:
 
 ```bash
 cargo fmt --all -- --check
-cargo clippy --all-targets -- -D warnings
-cargo test
+cargo clippy --locked --all-targets -- -D warnings
+cargo test --locked
 cargo doc --no-deps
 ```
 
@@ -27,13 +27,42 @@ CI runs exactly these four on `ubuntu-latest` with the stable toolchain.
 Warnings are denied, and that includes `missing_docs`: a new public item
 without a doc comment fails the build.
 
+## Pull requests
+
+Every CI check must pass before a pull request can be merged. The `PR rules`
+check enforces these:
+
+- **Issue first.** Open an issue and wait until a maintainer labels it
+  `accepted`, then write `Closes #N` in the pull request.
+- **Tests.** Every change to `src/` needs a test: a new `#[test]` or a
+  change under `tests/`. A bug fix needs a test that fails without the fix.
+- **Small.** At most 400 changed lines (`Cargo.lock` not counted), one issue
+  per pull request.
+- **No suppressions.** No `#[allow(`, `#[expect(` or `#[rustfmt::skip]`, no
+  lint set to `"allow"` in `Cargo.toml`, no `clippy.toml` or `rustfmt.toml`.
+  Fix the finding.
+- **At most 2 open pull requests** per person.
+
+If a rule really does not fit your change, say why in the description. A
+maintainer can waive it with a label (`no-tests-needed`, `large-change` or
+`suppression-ok`).
+
+## Legal notice
+
+By submitting a contribution you confirm that you wrote it, that you have the
+right to submit it, and that it may be distributed under the project licence
+(see [LICENSE-MIT](LICENSE-MIT)).
+
 ## AI-assisted contributions
 
 Using AI tools is fine; please just be open about it.
 
 - Say in the PR description which AI tools you used, if any: none, some or most, plus the tool or agent and the model (for example "Claude Code, Opus 5.5" or "Copilot, GPT-5").
 - Please write the PR description in your own words; short and plain is fine. It shows us what you understood about the change. Please don't paste generated text.
-- Read, run and test every line you submit, and be ready to explain it in review.
+- Read, run and test every line you submit, and be ready to explain it in review. If you don't understand what a line does, don't submit it.
+- Keep the change focused. Agents like to add unrelated "improvements", long comments and dead code; remove them before you open the pull request.
+- Pull requests that are raw, unreviewed agent output will be closed.
+- If you use an agent, point it at [AGENTS.md](AGENTS.md).
 - If the disclosure is missing, a check adds a reminder to the PR. It does not fail the PR, but a maintainer will ask about it before merging.
 
 ## What a good change looks like
