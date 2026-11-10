@@ -9,8 +9,8 @@
 ## Checklist
 
 - [ ] `cargo fmt --all -- --check` leaves no diff
-- [ ] `cargo clippy --all-targets -- -D warnings` is clean
-- [ ] `cargo test` passes
+- [ ] `cargo clippy --locked --all-targets -- -D warnings` is clean
+- [ ] `cargo test --locked` passes
 - [ ] `cargo doc --no-deps` builds, and new public items have doc comments
 - [ ] Closes an issue labelled `accepted`; at most 400 changed lines; no `#[allow(` (checked)
 - [ ] Changes to `src/` come with a test (checked)
